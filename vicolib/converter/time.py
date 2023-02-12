@@ -6,8 +6,10 @@ formats = {
     "dmy-time": "%d.%m.%Y - %X",
     "ymd": "%Y/%m%d",
     "ymd-time": "%Y/%m/%d - %X",
-    "time": "%X",
-    "time-ms": "%X:%f"
+    "time": "%H:%M",
+    "time-s": "%X",
+    "time-apm": "%I:%M %p",
+    "written": "%A %d. %B %Y",
 }
 
 
@@ -15,7 +17,7 @@ class Time:
     """
     Time methods:
     Time.stamp_now()
-    # Converts the current time to a formatable timestamp string
+    # Converts the current time to a formattable timestamp string
     # ? params: format: string -> e.g. "%Y/%m/%d" or from formats dict:
         "def": "%Y/%m/%d - %X",         -> 2023/2/4 - 18:30:26
         "dmy": "%d.%m.%Y",              -> 4.2.2023
@@ -39,8 +41,9 @@ class Time:
         if not format:
             format = formats["def"]
         if format in formats:
-            formats = formats[format]
+            format = formats[format]
         return now.strftime(format)
+
 
     # Converts microseconds (us) to milliseconds (ms).
     @staticmethod
