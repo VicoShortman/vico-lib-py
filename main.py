@@ -13,7 +13,9 @@ def bench_test(n=None):
     for r in range(n):
         r += r * 2
 
+
 important = debug_important("=")
+
 
 @important
 def debug_important_test():
@@ -29,3 +31,4 @@ if __name__ == "__main__":
     debug_important_test()
     bench_test(9000000)
     debug_test()
+    print(f"Timestamp Now: {Time.stamp_now('written')}")
