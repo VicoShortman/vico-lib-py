@@ -26,14 +26,21 @@ Use at your own risk!
 - **description:** Converts the current time to a formattable timestamp string
 - **params:** *format: string* -> e.g. "%Y/%m/%d" or from formats dict:
 
-Predefined Formats:
-```
-    "def":          "%Y/%m/%d - %X",        -> 2023/2/4 - 18:30:26
-    "dmy":          "%d.%m.%Y",             -> 4.2.2023
-    "dmy-time":     "%d.%m.%Y - %X",        -> 4.2.2023 - 18:30:26
-    "ymd":          "%Y/%m%d",              -> 2023/2/4
-    "ymd-time":     "%Y/%m/%d - %X",        -> 2023/2/4 - 18:30:26
-```
+#### Predefined Formats:
+| Key          |    Format        | Example Output         | Description |
+| -----------  | ---------------- | ---------------------- | ------------ 
+| "def"        | %Y/%m/%d - %X  | 2023/2/4 - 18:30:26      | Default 
+| "dmy"        | %d.%m.%Y"      | 4.2.2023                 | Day.Month.Year
+| "dmy-time"   | %d.%m.%Y - %X  | 4.2.2023 - 18:30:26      | Day.Month.Year with time
+| "ymd"        | %Y/%m%d        | 2023/2/4                 | Year/Month/Day
+| "ymd-time"   | %Y/%m/%d - %X  | 2023/2/4 - 18:30:26      | Year/Month/Day with time
+| "time"       | %X             | 18:30:26                 | Time with seconds
+| "time-short" | %H:%M          | 18:30                    | Time without seconds
+| "time-apm"   | %I:%M %p       | 6:30 PM                  | Time with AM / PM
+| "written"    | %A %d. %B %Y   | Sunday 12. February 2023 | Written Date
+
+
+
 - **return:** *str* (like "2023/2/4 - 18:30:26")
 </details>
 <details><summary>Time.us_to_ms(us)</summary>
@@ -90,6 +97,16 @@ def debug_important_test():
 #     return "Long Return Debug Text"
 #
 # but if you use it more then once, its inefficient
+
+
+# get timestamp
+print(f"Timestamp Now: {Time.stamp_now()}")
+# get timestamp with DMY
+print(f"Timestamp Now Formattet: {Time.stamp_now('dmy')}")
+# get timestamp custom formattet
+print(f"Timestamp Now Formattet: {Time.stamp_now('%Y,%d Month: %M')}")
+
+
 
 bench_test(9000000)
 debug_important_test()
