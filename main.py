@@ -1,6 +1,8 @@
 from vicolib.converter.time import Time
 from vicolib.decorators.debug import debug, important, create_important_decorator
 from vicolib.decorators.benchmark import bench_time
+from vicolib.converter.types import dict_merge
+
 
 # get timestamp
 print(f"Timestamp Now: {Time.stamp_now()}")
@@ -39,7 +41,7 @@ def debug_important_test():
 #
 # but if you use it more then once, its inefficient
 
-# If you want a custom char to be printend, create your own decorator
+# If you want a custom char to be printed, create your own decorator
 my_decorator = create_important_decorator("=")
 
 @my_decorator
@@ -53,3 +55,9 @@ bench_test(9000000)
 debug_test()
 debug_important_test()
 debug_my_decorator()
+
+#############################
+dict1 = {'a': 1, 'b': 5, 'c': 24}
+dict2 = {'b': 2, 'e': 312, 'd': 23}
+
+print(dict_merge(dict1, dict2))
