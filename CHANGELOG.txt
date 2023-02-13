@@ -4,3 +4,7 @@ Change Log
 0.0.1 (12.02.2023)
 ------------------
 - First Release
+
+0.0.2
+- Updated README.txt
+- Changed important debug: Added create_important_decorator and standart important decorator

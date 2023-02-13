@@ -33,6 +33,6 @@ def create_important_decorator(char="!"):
 
     return decorate
 
+
 # Returns Default important decorator (char="!")
-def important():
-    return create_important_decorator()
+important = create_important_decorator()

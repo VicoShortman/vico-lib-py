@@ -16,7 +16,7 @@ Use at your own risk!
 <details><summary>vicolib.decorators.debug</summary>
 
 - `@debug`   -> prints the return value of a function
-- `@important`   -> prints the return value of a function
+- `@important`   -> prints the return like debug with extra chars so it stands out
 </details>
 
 ## 2. Converter:
@@ -66,7 +66,16 @@ Use at your own risk!
 
 ```python
 from vicolib.converter.time import Time
-from vicolib.decorators.debug import debug, debug_important
+from vicolib.decorators.debug import debug, important, create_important_decorator
+from vicolib.decorators.benchmark import bench_time
+
+# get timestamp
+print(f"Timestamp Now: {Time.stamp_now()}")
+# get timestamp with DMY
+print(f"Timestamp Now Formattet: {Time.stamp_now('dmy')}")
+# get timestamp custom formattet
+print(f"Timestamp Now Formattet: {Time.stamp_now('%Y,%d Month: %M')}")
+
 
 # measure the time a function takes to execute and prints it to console
 @bench_time
@@ -84,41 +93,48 @@ def debug_test():
     return "Long Return Debug Text"
 
 
-# print the return like debug but with a line full of '=' 
-important = debug_important("=")
+# print the return like debug but with a line full of '!' 
 @important
 def debug_important_test():
     return "Long Return Debug Text"
 
 # you could also write it like this:
 #
-# @debug_important("=")
+# @create_important_decorator("!")
 # def debug_important_test():
 #     return "Long Return Debug Text"
 #
 # but if you use it more then once, its inefficient
 
+# If you want a custom char to be printend, create your own decorator
+my_decorator = create_important_decorator("=")
 
-# get timestamp
-print(f"Timestamp Now: {Time.stamp_now()}")
-# get timestamp with DMY
-print(f"Timestamp Now Formattet: {Time.stamp_now('dmy')}")
-# get timestamp custom formattet
-print(f"Timestamp Now Formattet: {Time.stamp_now('%Y,%d Month: %M')}")
+@my_decorator
+def debug_my_decorator():
+    return "My Test Text"
 
 
 
 bench_test(9000000)
-debug_important_test()
 debug_test()
+debug_important_test()
+debug_my_decorator()
+
+
 ```
 ### Output
 ```
-=======================================================================
-[2023/02/12 - 18:53:50]: debug_important_test -> Long Return Debug Text
-=======================================================================
-BENCH_TIME: bench_test took 0.5961356163024902 seconds to execute
-[2023/02/12 - 18:53:50]: debug_test -> Long Return Debug Text
+Timestamp Now: 2023/02/13 - 10:01:07
+Timestamp Now Formattet: 13.02.2023
+Timestamp Now Formattet: 2023,13 Month: 01
+BENCH_TIME: bench_test took 0.585132360458374 seconds to execute
+[2023/02/13 - 10:01:07]: debug_test -> Long Return Debug Text
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2023/02/13 - 10:01:07]: debug_important_test -> Long Return Debug Text
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+===========================================================
+[2023/02/13 - 10:01:07]: debug_my_decorator -> My Test Text
+===========================================================
 ```
 # Licence (MIT):
 ### **[LICENCE.txt](LICENCE.txt)**
