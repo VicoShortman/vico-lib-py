@@ -16,7 +16,7 @@ def debug(function):
 
 
 # Prints the return like @debug but with a line of "*" (or the given char) before and after, so it really stands out
-def debug_important(char="!"):
+def create_important_decorator(char="!"):
     def decorate(function):
         @wraps(function)
         def wrapper(*args, **kwargs):
@@ -32,3 +32,7 @@ def debug_important(char="!"):
         return wrapper
 
     return decorate
+
+# Returns Default important decorator (char="!")
+def important():
+    return create_important_decorator()
